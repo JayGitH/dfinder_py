@@ -28,9 +28,5 @@ class Register:
     self.etcd_client.put(self._makeKey(), self.addr, lease)
     print("serve begin, lease.id={}".format(lease.id))
     while True:
-      print("debug|refresh lease|lease.id={}".format(lease.id))
-      refresh_list = lease.refresh()
-      print("debug|", refresh_list)
-      resp = self.etcd_client.get_lease_info(lease_id=lease.id)
-      print("debug|", resp)
+      lease.refresh()
       time.sleep(5)
